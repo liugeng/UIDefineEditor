@@ -8,5 +8,6 @@
         <file>Resources/help.png</file>
         <file>Resources/selected.png</file>
         <file>Resources/icon.png</file>
+        <file>Resources/new.png</file>
     </qresource>
 </RCC>

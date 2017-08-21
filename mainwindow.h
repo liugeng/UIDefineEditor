@@ -51,6 +51,8 @@ private slots:
 
     void closeEvent(QCloseEvent* event);
 
+    void on_newfile_triggered();
+
 private:
     Ui::MainWindow *ui;
     MyListGroupItem *_curGroupItem;

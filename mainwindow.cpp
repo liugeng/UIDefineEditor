@@ -8,7 +8,6 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
-#include "uidata.h"
 #include <QStandardPaths>
 #include <QTextStream>
 #include "helowindow.h"
@@ -71,7 +70,7 @@ void MainWindow::resetGroupData()
 
     _curGroupItem->datas.clear();
 
-    for (int i = 0; i < ui->listWidget2->count(); i++) {
+    for (int i = 0; i < ui->listWidget2->count()-1; i++) {
         QListWidgetItem* qItem = ui->listWidget2->item(i);
         MyListItem* item = (MyListItem*)ui->listWidget2->itemWidget(qItem);
         _curGroupItem->datas.append(item->data);
@@ -82,6 +81,12 @@ void MainWindow::loadFromJson()
 {
     ui->listWidget1->clear();
     ui->listWidget2->clear();
+
+    _curGroupItem = nullptr;
+
+    if (_jsonFilePath.isEmpty()) {
+        return;
+    }
 
     QFile file(_jsonFilePath);
     if (!file.open(QFile::ReadOnly)) {
@@ -263,7 +268,9 @@ void MainWindow::on_save_triggered()
 {
     if (_jsonFilePath.isEmpty()) {
         _jsonFilePath = QFileDialog::getSaveFileName(this, "save", "./uidefine", "*.json");
-        saveConfig();
+        if (!_jsonFilePath.isEmpty()) {
+            saveConfig();
+        }
     }
 
     QFile file(_jsonFilePath);
@@ -291,6 +298,16 @@ void MainWindow::on_help_triggered()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     qDebug("close event");
-    on_save_triggered();
+    if (!(_jsonFilePath.isEmpty() && ui->listWidget1->count() == 0 && ui->listWidget2->count() == 0)) {
+        on_save_triggered();
+    }
+
     QMainWindow::closeEvent(event);
+}
+
+void MainWindow::on_newfile_triggered()
+{
+    on_save_triggered();
+    _jsonFilePath = "";
+    loadFromJson();
 }

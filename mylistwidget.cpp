@@ -5,7 +5,6 @@
 #include "mylistgroupitem.h"
 #include <QMenu>
 #include <QMessageBox>
-#include "uidata.h"
 #include "mainwindow.h"
 
 MyListWidget::MyListWidget(QWidget* parent) : QListWidget(parent)

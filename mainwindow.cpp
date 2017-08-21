@@ -70,7 +70,7 @@ void MainWindow::resetGroupData()
 
     _curGroupItem->datas.clear();
 
-    for (int i = 0; i < ui->listWidget2->count()-1; i++) {
+    for (int i = 0; i < ui->listWidget2->count(); i++) {
         QListWidgetItem* qItem = ui->listWidget2->item(i);
         MyListItem* item = (MyListItem*)ui->listWidget2->itemWidget(qItem);
         _curGroupItem->datas.append(item->data);

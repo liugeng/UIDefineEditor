@@ -10,7 +10,7 @@
 #include <QJsonObject>
 #include <QStandardPaths>
 #include <QTextStream>
-#include "helowindow.h"
+#include "helpwindow.h"
 
 MainWindow* MainWindow::instance = nullptr;
 
@@ -30,8 +30,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->listWidget2->setId(2);
 
     connect(ui->listWidget1, SIGNAL(itemRemoved(QListWidgetItem*)), this, SLOT(on_listWidget1_itemRemoved(QListWidgetItem*)));
-    //ui->listWidget1->setCurrentRow(0);
-    ui->listWidget2->setEnabled(false);
 
     readConfig();
     loadFromJson();
@@ -81,6 +79,7 @@ void MainWindow::loadFromJson()
 {
     ui->listWidget1->clear();
     ui->listWidget2->clear();
+    ui->listWidget2->setEnabled(false);
 
     _curGroupItem = nullptr;
 
@@ -115,6 +114,14 @@ void MainWindow::loadFromJson()
                 d.desc = oj.contains("desc") ? oj["desc"].toString() : MyListItem::defaultDescription;
                 group->datas.append(d);
             }
+        }
+    }
+
+    if (ui->listWidget1->count() > 0) {
+        ui->listWidget1->setCurrentRow(0);
+
+        if (ui->listWidget2->count() > 0) {
+            ui->listWidget2->setCurrentRow(0);
         }
     }
 }
@@ -291,7 +298,7 @@ void MainWindow::on_save_triggered()
 
 void MainWindow::on_help_triggered()
 {
-    HeloWindow* help = new HeloWindow(this);
+    HelpWindow* help = new HelpWindow(this);
     help->show();
 }
 

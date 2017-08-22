@@ -13,14 +13,14 @@ public:
 
     void mouseDoubleClickEvent(QMouseEvent *event);
 
+    void beginEdit();
+    bool isEditing();
+
 signals:
     void textEdited();
 
 public slots:
     void editFinished();
-
-private:
-    void showLineEdit();
 
 private:
     QLineEdit *_lineEdit;

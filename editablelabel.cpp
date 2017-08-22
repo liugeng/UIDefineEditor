@@ -14,20 +14,26 @@ EditableLabel::~EditableLabel()
 
 void EditableLabel::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    showLineEdit();
+    beginEdit();
+}
+
+bool EditableLabel::isEditing()
+{
+    return (_lineEdit && !_lineEdit->isHidden());
 }
 
 void EditableLabel::editFinished()
 {
     if (_lineEdit) {
         _lineEdit->hide();
+        _lineEdit->releaseKeyboard();
         setText(_lineEdit->text());
 
         emit textEdited();
     }
 }
 
-void EditableLabel::showLineEdit()
+void EditableLabel::beginEdit()
 {
     if (!_lineEdit) {
         _lineEdit = new QLineEdit(this);

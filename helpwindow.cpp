@@ -1,7 +1,7 @@
-#include "helowindow.h"
+#include "helpwindow.h"
 #include "ui_helowindow.h"
 
-HeloWindow::HeloWindow(QWidget *parent) :
+HelpWindow::HelpWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::HeloWindow)
 {
@@ -13,7 +13,7 @@ HeloWindow::HeloWindow(QWidget *parent) :
     setFixedSize(geometry().width(), geometry().height());
 }
 
-HeloWindow::~HeloWindow()
+HelpWindow::~HelpWindow()
 {
     delete ui;
 }

@@ -30,7 +30,7 @@ SOURCES += \
     editablelabel.cpp \
     mylistgroupitem.cpp \
     mylistwidget.cpp \
-    helowindow.cpp
+    helpwindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,13 +38,13 @@ HEADERS += \
     editablelabel.h \
     mylistgroupitem.h \
     mylistwidget.h \
-    helowindow.h
+    helpwindow.h
 
 FORMS += \
         mainwindow.ui \
         mylistitem.ui \
     mylistgroupitem.ui \
-    helowindow.ui
+    helpwindow.ui
 
 DISTFILES +=
 

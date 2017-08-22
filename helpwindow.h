@@ -7,13 +7,13 @@ namespace Ui {
 class HeloWindow;
 }
 
-class HeloWindow : public QMainWindow
+class HelpWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit HeloWindow(QWidget *parent = 0);
-    ~HeloWindow();
+    explicit HelpWindow(QWidget *parent = 0);
+    ~HelpWindow();
 
 private:
     Ui::HeloWindow *ui;
